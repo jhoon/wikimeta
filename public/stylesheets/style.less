@@ -1,8 +1,36 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding-top: 50px;
 }
 
 a {
   color: #00B7FF;
+}
+
+.noscroll { overflow: hidden; }
+
+.scrollable{
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+.wm-timeline{
+  width: 100%;
+}
+.wm-timeline > hr{
+  border: solid black 1px;
+}
+.wm-cards-area{
+  -ms-touch-action: none;
+touch-action: none;
+
+}
+.wm-card{
+  display:inline-block;
+  width: 150px;
+  margin: 0px !important;
+}
+/* free card slot */
+.wm-card-slot{
+  width: 40px;
+  margin: 0px 10px;
+  display:inline-block;
 }

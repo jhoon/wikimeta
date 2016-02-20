@@ -2,14 +2,138 @@ extends layout
 
 block append bottom_javascript
   script(type='text/javascript').
-    require(['webapp/WikiMeta','dojo/domReady!']);
+    require(['webapp/WikiMeta','dojox/mvc/Output','dojo/domReady!']);
 
 
 block content
-  div.container
+  div.container-fluid
     div.row
-      div.col-xs-4.col-xs-offset-4.text-center
-        h1 WikiMeta!!!
+      div.col-xs-12 &nbsp;
+    div.row
+      div.col-xs-12.text-center
+        div.alert.alert-success(role="alert",data-dojo-type="dojox/mvc/Output",data-dojo-props="innerHTML: at(model, 'game_instructions'), className: at(model, 'game_instructions_type')") &nbsp;
+    div.row
+      div.wm-cards-area.scrollable
+        center
+          table
+            tr
+              td
+                div.wm-card-slot
+                  button.btn.btn-default.btn-block +
+              td
+                div.thumbnail.wm-card
+                  div.caption.text-center
+                    h3 Thumbnail label
+                  img.img-responsive.img-thumbnail(src='https://unsplash.it/80?blur')
+                  div.caption.text-center
+                    p Lorem ipsum dolor sit amet
+                      strong.mark 1990
+              td
+                div.wm-card-slot
+                  button.btn.btn-default.btn-block +
+              td
+                div.thumbnail.wm-card
+                  div.caption.text-center
+                    h3 Thumbnail label
+                  img.img-responsive.img-thumbnail(src='https://unsplash.it/80?blur')
+                  div.caption.text-center
+                    p Lorem ipsum dolor sit amet
+                      strong.mark 1990
+              td
+                div.wm-card-slot
+                  button.btn.btn-default.btn-block +
+              td
+                div.thumbnail.wm-card
+                  div.caption.text-center
+                    h3 Thumbnail label
+                  img.img-responsive.img-thumbnail(src='https://unsplash.it/80?blur')
+                  div.caption.text-center
+                    p Lorem ipsum dolor sit amet
+                      strong.mark 1990
+              td
+                div.wm-card-slot
+                  button.btn.btn-default.btn-block +
+              td
+                div.thumbnail.wm-card
+                  div.caption.text-center
+                    h3 Thumbnail label
+                  img.img-responsive.img-thumbnail(src='https://unsplash.it/80?blur')
+                  div.caption.text-center
+                    p Lorem ipsum dolor sit amet
+                      strong.mark 1990
+              td
+                div.wm-card-slot
+                  button.btn.btn-default.btn-block +
+              td
+                div.thumbnail.wm-card
+                  div.caption.text-center
+                    h3 Thumbnail label
+                  img.img-responsive.img-thumbnail(src='https://unsplash.it/80?blur')
+                  div.caption.text-center
+                    p Lorem ipsum dolor sit amet
+                      strong.mark 1990
+              td
+                div.wm-card-slot
+                  button.btn.btn-default.btn-block +
+              td
+                div.thumbnail.wm-card
+                  div.caption.text-center
+                    h3 Thumbnail label
+                  img.img-responsive.img-thumbnail(src='https://unsplash.it/80?blur')
+                  div.caption.text-center
+                    p Lorem ipsum dolor sit amet
+                      strong.mark 1990
+              td
+                div.wm-card-slot
+                  button.btn.btn-default.btn-block +
+              td
+                div.thumbnail.wm-card
+                  div.caption.text-center
+                    h3 Thumbnail label
+                  img.img-responsive.img-thumbnail(src='https://unsplash.it/80?blur')
+                  div.caption.text-center
+                    p Lorem ipsum dolor sit amet
+                      strong.mark 1990
+              td
+                div.wm-card-slot
+                  button.btn.btn-default.btn-block +
+              td
+                div.thumbnail.wm-card
+                  div.caption.text-center
+                    h3 Thumbnail label
+                  img.img-responsive.img-thumbnail(src='https://unsplash.it/80?blur')
+                  div.caption.text-center
+                    p Lorem ipsum dolor sit amet
+                      strong.mark 1990
+              td
+                div.wm-card-slot
+                  button.btn.btn-default.btn-block +
+              td
+                div.thumbnail.wm-card
+                  div.caption.text-center
+                    h3 Thumbnail label
+                  img.img-responsive.img-thumbnail(src='https://unsplash.it/80?blur')
+                  div.caption.text-center
+                    p Lorem ipsum dolor sit amet
+                      strong.mark 1990
+              td
+                div.wm-card-slot
+                  button.btn.btn-default.btn-block +
+            tr
+              td(colspan="100%")
+                span.pull-left unknown
+                span.pull-right today
+            tr
+              td(colspan="100%")
+                div.wm-timeline
+                  hr
+  div.container-fluid
+    div.row
+      div.col-xs-4.col-xs-offset-4
+        div.thumbnail
+          div.caption.text-center
+            h3 Thumbnail label
+          img.img-responsive.img-thumbnail(src='https://unsplash.it/200?blur')
     div.row
       div.col-xs-4.col-xs-offset-4.text-center
         div(data-dojo-type="TestWidget")
