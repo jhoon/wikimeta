@@ -1,5 +1,15 @@
 extends layout
 
+block append bottom_javascript
+  script(type='text/javascript').
+    require(['webapp/WikiMeta','dojo/domReady!']);
+
+
 block content
-  h1= title
-  p Welcome to #{title}
+  div.container
+    div.row
+      div.col-xs-4.col-xs-offset-4.text-center
+        h1 WikiMeta!!!
+    div.row
+      div.col-xs-4.col-xs-offset-4.text-center
+        div(data-dojo-type="TestWidget")
