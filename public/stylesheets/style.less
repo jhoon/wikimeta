@@ -1,5 +1,6 @@
+@cards_area_height: 300px;
+
 body {
-  padding-top: 50px;
 }
 
 a {
@@ -12,6 +13,11 @@ a {
   overflow-y: hidden;
   overflow-x: auto;
 }
+
+.wm-navbar{
+  background-color: silver;
+}
+
 .wm-timeline{
   width: 100%;
 }
@@ -19,9 +25,9 @@ a {
   border: solid black 1px;
 }
 .wm-cards-area{
-  -ms-touch-action: none;
-touch-action: none;
-
+  padding: 15px 0px;
+  background-color: #ccc;
+  height: @cards_area_height;
 }
 .wm-card{
   display:inline-block;

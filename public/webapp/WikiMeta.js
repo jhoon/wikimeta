@@ -65,7 +65,8 @@ define( [
     "game_points": 0,
     "game_time": "06:59",
     "game_instructions": "---",
-    "game_instructions_type": "alert alert-info"
+    "game_instructions_type": "alert alert-info",
+    "game_finished_message": ""
   } );
   declare( "PageController", [ _WidgetBase, _AttachMixin ], {
     state: 'SELECT_SLOT',
@@ -78,9 +79,17 @@ define( [
     },
     buildRendering: function() {
       this.inherited( arguments );
+      query( '#btn-start-game' ).on( 'click', lang.hitch( this, this.startGame ) )
+      query( '#btn-restart-game' ).on( 'click', lang.hitch( this, this.restartGame ) )
+    },
+    restartGame: function() {
+      this.startGame();
     },
     startGame: function() {
+      this.cards = [];
+      this.cardPlay = [];
       util.loadCategoryByName( 'movies-90s' ).then( lang.hitch( this, this._updateData ) );
+      $( "#modal_start" ).modal( 'hide' );
     },
     _updateData: function( data ) {
       if ( data.length < 1 ) {
@@ -94,6 +103,7 @@ define( [
     _initUI: function() {
       model.set( "game_instructions_type", "alert alert-info" );
       model.set( "game_instructions", "Let's start" );
+      // first card
       var cardPlayedData = this.cardPlay[ 0 ];
       cardPlayedData.played = true;
       var domCard = this._createCard( cardPlayedData );
@@ -111,7 +121,7 @@ define( [
       return domConstruct.toDom( lang.replace( util.template( "template_card", "<td>{0}</td>" ), data, REPLACE_PATTERN ) );
     },
     _createNextCard: function( data ) {
-      return domConstruct.toDom( lang.replace( util.template( "template_card"), data, REPLACE_PATTERN ) );
+      return domConstruct.toDom( lang.replace( util.template( "template_card" ), data, REPLACE_PATTERN ) );
     },
     _createSlot: function() {
       var slotDom = domConstruct.toDom( lang.replace( util.template( "template_slot", "<td>{0}</td>" ), {}, REPLACE_PATTERN ) );
@@ -173,8 +183,7 @@ define( [
         model.set( "game_instructions", "Slot agregado incorrecto" );
       }
       if ( this.cards.length == 0 ) {
-        alert( "You win!!!" );
-        PageController.startGame();
+        model.set( 'game_finished_message', lang.replace( "You win.", this.model ) );
       };
     },
     _handleCancelSlot: function() {
@@ -187,6 +196,7 @@ define( [
     startup: function() {
       this.inherited( arguments );
       PageController.startGame();
+      $( '#modal_start' ).modal( "show" );
     }
   } );
   return this;

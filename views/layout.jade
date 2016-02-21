@@ -1,3 +1,31 @@
+
+mixin modal_win
+  div#modal_win.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel')
+    div.modal-dialog(role='document')
+      div.modal-content
+        div.modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') ×
+          h4#myModalLabel.modal-title Game Over
+        div.modal-body
+          h3(data-dojo-type="dojox/mvc/Output", data-dojo-props="value:at(model,'game_finished')") ${this.value}
+          h1(data-dojo-type="dojox/mvc/Output", data-dojo-props="value:at(model,'game_points')") ${this.value}
+        div.modal-footer
+          button#btn-restart-game.btn.btn-primary(type='button') Play Again
+
+mixin modal_start
+  div#modal_start.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel')
+    div.modal-dialog(role='document')
+      div.modal-content
+        div.modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') ×
+          h4#myModalLabel.modal-title WikiMeta - The Game
+        div.modal-body
+          span choose categories
+        div.modal-footer
+          button#btn-start-game.btn.btn-primary(type='button') Start
+
 doctype html
 html(lang='en')
   head
@@ -15,16 +43,20 @@ html(lang='en')
   body.noscroll
     script(type="dojo/require").
       at: "dojox/mvc/at"
-    nav.navbar.navbar-fixed-top.navbar-inverse
-      div.container
-          div.col-xs-4
-            a.navbar-brand(href='#') WikiMeta
-          div.col-xs-4
-            p.navbar-text
-              strong(data-dojo-type="dojox/mvc/Output",data-dojo-props="innerHTML: at(model, 'game_points')") 
-          div.col-xs-4
-            p.navbar-text.pull-right(data-dojo-type="dojox/mvc/Output",data-dojo-props="innerHTML: at(model, 'game_time')")
+    div.container-fluid.wm-navbar
+      div.row
+        div.col-xs-4
+          a.navbar-brand(href='#') WikiMeta
+        div.col-xs-4
+          p.navbar-text
+            strong(data-dojo-type="dojox/mvc/Output",data-dojo-props="value: at(model, 'game_points')") ${this.value} pt
+        div.col-xs-4
+          p.navbar-text.pull-right(data-dojo-type="dojox/mvc/Output",data-dojo-props="innerHTML: at(model, 'game_time')")
     block content
+    div.wm-templates
+      block templates
+    +modal_win
+    +modal_start
     script(type='text/javascript').
       var dojoConfig={
       baseUrl: './',
@@ -42,3 +74,7 @@ html(lang='en')
     // Include all compiled plugins (below), or include individual files as needed
     // Latest compiled and minified JavaScript
     script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js', integrity='sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS', crossorigin='anonymous')
+
+
+
+
