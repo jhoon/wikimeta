@@ -4,9 +4,9 @@ mixin modal_win
     div.modal-dialog(role='document')
       div.modal-content
         div.modal-header
-          h4#myModalLabel.modal-title Game Over
+          h4#myModalLabel.modal-title You finished!
         div.modal-body
-          h3(data-dojo-type="dojox/mvc/Output", data-dojo-props="value:at(model,'game_finished')") ${this.value}
+          h3(data-dojo-type="dojox/mvc/Output", data-dojo-props="value:at(model,'game_finished_message')") ${this.value}
           h1(data-dojo-type="dojox/mvc/Output", data-dojo-props="value:at(model,'game_points')") ${this.value}
         div.modal-footer
           button#btn-restart-game.btn.btn-primary(type='button') Play Again?

@@ -220,7 +220,7 @@ define( [
       } ).play();
       if ( this.cards.length == 0 ) {
 
-        model.set( 'game_finished_message', lang.replace( "You finished!", this.model ) );
+        model.set( 'game_finished_message', lang.replace( "Your score is:", this.model ) );
         $("#modal_win").modal("show");
       };
     },
