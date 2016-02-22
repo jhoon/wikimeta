@@ -175,15 +175,15 @@ define( [
       if ( isCorrect ) {
         model.set( "game_points", model.game_points + 100 );
         model.set( "game_instructions_type", "alert alert-success" );
-        model.set( "game_instructions", "Slot agregado correcto" );
+        model.set( "game_instructions", "That's right! :)" );
       } else {
         model.set( "game_points", model.game_points - 50 );
         query( '.wm-card', cardDom ).addClass( "wm-card-error" );
         model.set( "game_instructions_type", "alert alert-danger" );
-        model.set( "game_instructions", "Slot agregado incorrecto" );
+        model.set( "game_instructions", "Wrong date! :(" );
       }
       if ( this.cards.length == 0 ) {
-        model.set( 'game_finished_message', lang.replace( "You win.", this.model ) );
+        model.set( 'game_finished_message', lang.replace( "You finished!", this.model ) );
       };
     },
     _handleCancelSlot: function() {
@@ -191,7 +191,7 @@ define( [
       this.state = "SELECT_SLOT";
       this._showSelect( slotDom );
       model.set( "game_instructions_type", "alert alert-info" );
-      model.set( "game_instructions", "Select a Slot" );
+      model.set( "game_instructions", "Select a slot" );
     },
     startup: function() {
       this.inherited( arguments );
