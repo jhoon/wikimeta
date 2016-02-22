@@ -97,11 +97,11 @@ define( [
     buildRendering: function() {
       this.inherited( arguments );
       //query( '#btn-start-game' ).on( 'click', lang.hitch( this, this.startGame ) )
-      //query( '#btn-restart-game' ).on( 'click', lang.hitch( this, this.restartGame ) )
+      query( '#btn-restart-game' ).on( 'click', lang.hitch( this, this.restartGame ) )
       query( '.wm-category-button' ).on( 'click', lang.hitch( this, this.startGame ) )
     },
     restartGame: function() {
-      this.startGame();
+      location.reload()
     },
     startGame: function() {
       var target = evt.fix( event ).currentTarget;
@@ -162,9 +162,6 @@ define( [
       query( '*.wm-cancel', node ).addClass( 'wm-hide' )
     },
     _handleSelectSlot: function() {
-      if ( this.cards.length == 0 ) {
-        return;
-      };
       this._showSelect( null );
       var slotDom = evt.fix( event ).currentTarget.parentNode;
       this.state = "CONFIRM_SLOT";
@@ -187,10 +184,10 @@ define( [
       if ( this.cards.length > 0 ) {
         var currentSelectedCard = this._createNextCard( this.cards[ this.cards.length - 1 ] );
         domConstruct.place( currentSelectedCard, "currentCard", "only" );
-        this._check( currentCard, newCardPlayed );
       } else if ( this.cards.length == 0 ) {
         query( '#currentCard' ).empty();
       }
+      this._check( currentCard, newCardPlayed );
     },
     _check: function( card, cardDom ) {
       var number = query( '.wm-card[data-played="true"]' ).filter( function( elem ) {
@@ -222,7 +219,9 @@ define( [
         easing: easing.linear
       } ).play();
       if ( this.cards.length == 0 ) {
+
         model.set( 'game_finished_message', lang.replace( "You finished!", this.model ) );
+        $("#modal_win").modal("show");
       };
     },
     _handleCancelSlot: function() {
