@@ -1,11 +1,9 @@
 
 mixin modal_win
-  div#modal_win.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel')
+  div#modal_win.modal.fade(data-backdrop="static", tabindex='-1', role='dialog', aria-labelledby='myModalLabel')
     div.modal-dialog(role='document')
       div.modal-content
         div.modal-header
-          button.close(type='button', data-dismiss='modal', aria-label='Close')
-            span(aria-hidden='true') ×
           h4#myModalLabel.modal-title Game Over
         div.modal-body
           h3(data-dojo-type="dojox/mvc/Output", data-dojo-props="value:at(model,'game_finished')") ${this.value}
@@ -14,17 +12,30 @@ mixin modal_win
           button#btn-restart-game.btn.btn-primary(type='button') Play Again?
 
 mixin modal_start
-  div#modal_start.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel')
+  div#modal_start.modal.fade(data-backdrop="static",tabindex='-1', role='dialog', aria-labelledby='myModalLabel')
     div.modal-dialog(role='document')
       div.modal-content
         div.modal-header
-          button.close(type='button', data-dismiss='modal', aria-label='Close')
-            span(aria-hidden='true') ×
           h4#myModalLabel.modal-title WikiMeta - The Game
         div.modal-body
-          span Place each new card in the slot you think it belongs, the objective of the game is to create an accurate timeline.
-        div.modal-body
-          span Choose a Category to start a game
+          p Place each new card in the slot you think it belongs, the objective of the game is to create an accurate timeline.
+          p Choose a Category to start a game
+          center 
+            table
+              tr
+                td
+                  button.col-xs-6.wm-category-button.btn.btn-default(type='button',data-category= "movies-90s", data-toggle='button', aria-pressed='false', autocomplete='off')
+                    strong 90's Movies
+                td
+                  button.col-xs-6.wm-category-button.btn.btn-default(type='button',data-category= "movies-90s", data-toggle='button', aria-pressed='false', autocomplete='off')
+                    strong Single toggle
+              tr
+                td
+                  button.col-xs-6.wm-category-button.btn.btn-default(type='button',data-category= "movies-90s", data-toggle='button', aria-pressed='false', autocomplete='off')
+                    strong Single toggle
+                td
+                  button.col-xs-6.wm-category-button.btn.btn-default(type='button',data-category= "movies-90s", data-toggle='button', aria-pressed='false', autocomplete='off')
+                    strong Single toggle
         div.modal-footer
           div Inspired by the History 101 game included in 
             a(href='http://metaga.me/') The Metagame
@@ -43,16 +54,15 @@ html(lang='en')
     // Optional theme
     link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css', integrity='sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r', crossorigin='anonymous')
     link(rel='stylesheet', href='stylesheets/style.css')
-  body.noscroll
+  body
     script(type="dojo/require").
       at: "dojox/mvc/at"
     div.container-fluid.wm-navbar
       div.row
         div.col-xs-4
           a.navbar-brand(href='#') WikiMeta
-        div.col-xs-4
-          p.navbar-text
-            strong(data-dojo-type="dojox/mvc/Output",data-dojo-props="value: at(model, 'game_points')") ${this.value} points
+        div.col-xs-4.text-center
+          strong.wm-score(data-dojo-type="dojox/mvc/Output",data-dojo-props="value: at(model, 'game_points')") ${this.value} points
         div.col-xs-4
           p.navbar-text.pull-right(data-dojo-type="dojox/mvc/Output",data-dojo-props="innerHTML: at(model, 'game_time')")
     block content

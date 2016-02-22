@@ -15,8 +15,14 @@ block templates
         strong ${title}
       img.img-responsive.img-thumbnail.wm-card-img(src="${img}")
       div.caption.text-center
-        p ${content} 
+        p  
           strong.mark ${year}
+  div#template_current_card
+    div.thumbnail.wm-current-card(id="${id}",data-played="${played}",data-year="${year}")
+      div.caption.text-center
+        strong ${title}
+      img(src="${img}")
+      div.caption.text-center
 
 block append bottom_javascript
   script(type='text/javascript').
@@ -24,7 +30,7 @@ block append bottom_javascript
 
 
 block content
-  div.container-fluid
+  div.container-fluid.wm-pre-load
     div.row
       div.col-xs-12 &nbsp;
     div.row
@@ -41,6 +47,9 @@ block content
                   span.pull-left &#x221e;
                   span.pull-right Today
   div.container-fluid
+    div.row
+      div.col-xs-12.text-center 
+        h2 Where does this card go?
     div.row
       div#currentCard.col-xs-4.col-xs-offset-4.text-center
   div(data-dojo-type="PageController", data-dojo-id="PageController")

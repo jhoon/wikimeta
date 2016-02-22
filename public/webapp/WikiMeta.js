@@ -19,11 +19,13 @@ define( [
   , 'dstore/Memory'
   , 'dojo/request'
   , 'webapp/utils/domArgs'
+  , 'dojo/fx/easing'
+  , 'dojo/_base/fx'
   // no parameters
   , 'dojo/NodeList-dom'
   , 'dojo/NodeList-html'
   , 'dojo/domReady!'
-  ], function( declare, lang, array, Stateful, dom, on, evt, query, string, Deferred, html, domConstruct, domClass, _WidgetBase, _WidgetsInTemplateMixin, _AttachMixin, Memory, request, domArgs ) {
+  ], function( declare, lang, array, Stateful, dom, on, evt, query, string, Deferred, html, domConstruct, domClass, _WidgetBase, _WidgetsInTemplateMixin, _AttachMixin, Memory, request, domArgs, easing, baseFx ) {
   var REPLACE_PATTERN = /\$\{([^\}]+)\}/g;
   var util = {
     template: function( templateId, wrapTemplate ) {
@@ -72,6 +74,21 @@ define( [
     state: 'SELECT_SLOT',
     cardPlay: null,
     cards: null,
+    _timerId: null,
+    _seconds: null,
+    _startClock: function() {
+      clearInterval( this._timerId );
+      this._timerId = setInterval( lang.hitch( this, this._updateTime ), 1000 );
+    },
+    _stopClock: function() {
+      clearInterval( this._timerId );
+    },
+    _updateTime: function() {
+      this._seconds++;
+      var date = new Date( null );
+      date.setSeconds( this._seconds ); // specify value for SECONDS here
+      model.set( 'game_time', date.toISOString().substr( 11, 8 ) )
+    },
     constructor: function() {
       this.inherited( arguments );
       this.cardPlay = [];
@@ -79,16 +96,19 @@ define( [
     },
     buildRendering: function() {
       this.inherited( arguments );
-      query( '#btn-start-game' ).on( 'click', lang.hitch( this, this.startGame ) )
-      query( '#btn-restart-game' ).on( 'click', lang.hitch( this, this.restartGame ) )
+      //query( '#btn-start-game' ).on( 'click', lang.hitch( this, this.startGame ) )
+      //query( '#btn-restart-game' ).on( 'click', lang.hitch( this, this.restartGame ) )
+      query( '.wm-category-button' ).on( 'click', lang.hitch( this, this.startGame ) )
     },
     restartGame: function() {
       this.startGame();
     },
     startGame: function() {
+      var target = evt.fix( event ).currentTarget;
+      var categoryId = target.attributes[ 'data-category' ].value;
       this.cards = [];
       this.cardPlay = [];
-      util.loadCategoryByName( 'movies-90s' ).then( lang.hitch( this, this._updateData ) );
+      util.loadCategoryByName( categoryId ).then( lang.hitch( this, this._updateData ) );
       $( "#modal_start" ).modal( 'hide' );
     },
     _updateData: function( data ) {
@@ -116,12 +136,13 @@ define( [
       var nextCardData = this.cards[ this.cards.length - 1 ];
       var currentSelectedCard = this._createNextCard( nextCardData );
       domConstruct.place( currentSelectedCard, "currentCard", "only" );
+      this._startClock();
     },
     _createCard: function( data ) {
       return domConstruct.toDom( lang.replace( util.template( "template_card", "<td>{0}</td>" ), data, REPLACE_PATTERN ) );
     },
     _createNextCard: function( data ) {
-      return domConstruct.toDom( lang.replace( util.template( "template_card" ), data, REPLACE_PATTERN ) );
+      return domConstruct.toDom( lang.replace( util.template( "template_current_card" ), data, REPLACE_PATTERN ) );
     },
     _createSlot: function() {
       var slotDom = domConstruct.toDom( lang.replace( util.template( "template_slot", "<td>{0}</td>" ), {}, REPLACE_PATTERN ) );
@@ -141,6 +162,9 @@ define( [
       query( '*.wm-cancel', node ).addClass( 'wm-hide' )
     },
     _handleSelectSlot: function() {
+      if ( this.cards.length == 0 ) {
+        return;
+      };
       this._showSelect( null );
       var slotDom = evt.fix( event ).currentTarget.parentNode;
       this.state = "CONFIRM_SLOT";
@@ -160,9 +184,13 @@ define( [
       domConstruct.place( domSlotRight, slotDom.parentNode, "after" );
       domConstruct.place( newCardPlayed, slotDom.parentNode, 'after' );
       // update next card
-      var currentSelectedCard = this._createNextCard( this.cards[ this.cards.length - 1 ] );
-      domConstruct.place( currentSelectedCard, "currentCard", "only" );
-      this._check( currentCard, newCardPlayed );
+      if ( this.cards.length > 0 ) {
+        var currentSelectedCard = this._createNextCard( this.cards[ this.cards.length - 1 ] );
+        domConstruct.place( currentSelectedCard, "currentCard", "only" );
+        this._check( currentCard, newCardPlayed );
+      } else if ( this.cards.length == 0 ) {
+        query( '#currentCard' ).empty();
+      }
     },
     _check: function( card, cardDom ) {
       var number = query( '.wm-card[data-played="true"]' ).filter( function( elem ) {
@@ -182,6 +210,17 @@ define( [
         model.set( "game_instructions_type", "alert alert-danger" );
         model.set( "game_instructions", "Wrong date! :(" );
       }
+      baseFx.animateProperty( {
+        node: query( '.wm-score' )[ 0 ],
+        properties: {
+          fontSize: {
+            start: 10,
+            end: 30,
+            unit: 'px'
+          }
+        },
+        easing: easing.linear
+      } ).play();
       if ( this.cards.length == 0 ) {
         model.set( 'game_finished_message', lang.replace( "You finished!", this.model ) );
       };
@@ -195,7 +234,7 @@ define( [
     },
     startup: function() {
       this.inherited( arguments );
-      PageController.startGame();
+      query( '.wm-pre-load' ).removeClass( 'wm-pre-load' );
       $( '#modal_start' ).modal( "show" );
     }
   } );
