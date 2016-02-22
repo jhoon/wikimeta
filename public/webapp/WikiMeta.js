@@ -102,7 +102,7 @@ define( [
     },
     _initUI: function() {
       model.set( "game_instructions_type", "alert alert-info" );
-      model.set( "game_instructions", "Let's start" );
+      model.set( "game_instructions", "Let's get started!" );
       // first card
       var cardPlayedData = this.cardPlay[ 0 ];
       cardPlayedData.played = true;
