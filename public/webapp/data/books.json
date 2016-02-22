@@ -1,0 +1,92 @@
+[
+  {
+    "title":"In Search of Lost Time by Marcel Proust",
+    "year":"1913",
+    "wiki":"https://en.wikipedia.org/wiki/In_Search_of_Lost_Time",
+    "img":"http://ecx.images-amazon.com/images/I/41ZsxDqUW1L._SL160_.jpg"
+  },
+  {
+    "title":"Ulysses by James Joyce",
+    "year":"1904",
+    "wiki":"https://en.wikipedia.org/wiki/Ulysses_(novel)",
+    "img":"http://ecx.images-amazon.com/images/I/51wTLf4JVwL._SL160_.jpg"
+  },
+  {
+    "title":"Don Quixote by Miguel de Cervantes",
+    "year":"1605",
+    "wiki":"https://en.wikipedia.org/wiki/Don_Quixote",
+    "img":"http://ecx.images-amazon.com/images/I/41d-rugLMRL._SL160_.jpg"
+  },
+  {
+    "title":"Moby Dick by Herman Melville",
+    "year":"1851",
+    "wiki":"https://en.wikipedia.org/wiki/Moby-Dick",
+    "img":"http://ecx.images-amazon.com/images/I/61di4BjD9tL._SL160_.jpg"
+  },
+  {
+    "title":"Hamlet by William Shakespeare",
+    "year":"https://en.wikipedia.org/wiki/Hamlet",
+    "wiki":"http://ecx.images-amazon.com/images/I/51yChJoybWL._SL160_.jpg",
+    "img":""
+  },
+  {
+    "title":"War and Peace by Leo Tolstoy",
+    "year":"1869",
+    "wiki":"http://en.wikipedia.org/wiki/War_and_Peace",
+    "img":"http://ecx.images-amazon.com/images/I/51KvKtN4qwL._SL160_.jpg"
+  },
+  {
+    "title":"The Great Gatsby by F. Scott Fitzgerald",
+    "year":"1925",
+    "wiki":"https://en.wikipedia.org/wiki/The_Great_Gatsby",
+    "img":"http://ecx.images-amazon.com/images/I/51khWutZqCL._SL160_.jpg"
+  },
+  {
+    "title":"The Divine Comedy by Dante Alighieri",
+    "year":"1320",
+    "wiki":"https://en.wikipedia.org/wiki/Divine_Comedy",
+    "img":"http://ecx.images-amazon.com/images/I/41d%2Bv6PF%2BaL._SL160_.jpg"
+  },
+  {
+    "title":"Madame Bovary by Gustave Flaubert",
+    "year":"1856",
+    "wiki":"https://en.wikipedia.org/wiki/Madame_Bovary",
+    "img":"http://ecx.images-amazon.com/images/I/51dd7TymJfL._SL160_.jpg"
+  },
+  {
+    "title":"The Brothers Karamazov by Fyodor Dostoyevsky",
+    "year":"1880",
+    "wiki":"https://en.wikipedia.org/wiki/The_Brothers_Karamazov",
+    "img":"http://ecx.images-amazon.com/images/I/413lldlSC9L._SL160_.jpg"
+  },
+  {
+    "title":"One Hundred Years of Solitude by Gabriel Garcia Marquez",
+    "year":"1967",
+    "wiki":"https://en.wikipedia.org/wiki/One_Hundred_Years_of_Solitude",
+    "img":"http://ecx.images-amazon.com/images/I/51tkcSAhSDL._SL160_.jpg"
+  },
+  {
+    "title":"The Adventures of Huckleberry Finn by Mark Twain",
+    "year":"1884",
+    "wiki":"https://en.wikipedia.org/wiki/Adventures_of_Huckleberry_Finn",
+    "img":"http://ecx.images-amazon.com/images/I/6174RV5u2oL._SL160_.jpg"
+  },
+  {
+    "title":"Lolita by Vladimir Nabokov",
+    "year":"1955",
+    "wiki":"https://en.wikipedia.org/wiki/Lolita",
+    "img":"http://ecx.images-amazon.com/images/I/51rd83ZTdRL._SL160_.jpg"
+  },
+  {
+    "title":"Alice's Adventures in Wonderland by Lewis Carroll",
+    "year":"1865",
+    "wiki":"https://en.wikipedia.org/wiki/Alice%27s_Adventures_in_Wonderland",
+    "img":"http://ecx.images-amazon.com/images/I/61-iHiPxSrL._SL160_.jpg"
+  },
+  {
+    "title":"The Sound and the Fury by William Faulkner",
+    "year":"1928",
+    "wiki":"https://en.wikipedia.org/wiki/The_Sound_and_the_Fury",
+    "img":"http://ecx.images-amazon.com/images/I/51LgnYHc%2BLL._SL160_.jpg"
+  }
+]
